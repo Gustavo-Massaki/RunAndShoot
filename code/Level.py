@@ -18,17 +18,20 @@ class Level:
         self.name = name
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity(self.name + 'Bg'))
-        #player = EntityFactory.get_entity('Player')
+        self.player = EntityFactory.get_entity('Player')
+        self.entity_list.append(self.player)
         #player.score = 0
-        #self.entity_list.append(player)
 
     def run(self,):
         clock = pygame.time.Clock()
         while True:
             clock.tick(60)
+            self.window.fill((0,0,0))
             for ent in self.entity_list:
-                self.window.blit(source= ent.surf, dest= ent.rect)
+                ent.update()
                 ent.move()
+                self.window.blit(source= ent.surf, dest= ent.rect)
+
 
                 #if ent.name == 'Player':
                      #self.level_text(14, f'Player: {ent.health} | Score: {ent.score}', C_RED,(10,25))
@@ -39,6 +42,7 @@ class Level:
                     sys.exit()
 
             pygame.display.flip()
+
     def level_text(self, text_size: int, text: str, text_color:tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size= text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()

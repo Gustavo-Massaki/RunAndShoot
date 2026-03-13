@@ -30,9 +30,9 @@ ENTITY_SHOT_DELAY = {
 }
 
 ENTITY_SPEED = {
-    'LevelBg0': 1,
-    'LevelBg1': 2,
-    'Player': 0,
+    'LevelBg0': 4,
+    'LevelBg1': 7,
+    'Player': 2,
 }
 
 #M

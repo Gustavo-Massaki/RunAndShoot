@@ -8,7 +8,21 @@ class Player(Entity):
 
     def __init__(self, name: str, position: tuple):
         super().__init__(name,position)
-        self.shot_delay = ENTITY_SHOT_DELAY[self.name]
+        self.frames = [
+            pygame.transform.scale(pygame.image.load('./asset/player_walk1.png').convert_alpha(),(104,128)),
+            pygame.transform.scale(pygame.image.load('./asset/player_walk2.png').convert_alpha(), (104, 128))
+        ]
+        self.frame_index = 0
+        self.animation_speed = 0.1
+        #self.shot_delay = ENTITY_SHOT_DELAY[self.name]
+
+    def update(self):
+        self.frame_index += self.animation_speed
+
+        if self.frame_index >= len(self.frames):
+            self.frame_index = 0
+
+        self.surf = self.frames[int(self.frame_index)]
 
     def move(self, ):
         pass
