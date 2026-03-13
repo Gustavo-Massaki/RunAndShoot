@@ -1,6 +1,7 @@
 import pygame
 
 from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION
+from code.Level import Level
 from code.Menu import Menu
 
 
@@ -17,7 +18,11 @@ class Game:
 
             if menu_return == MENU_OPTION[0]:
                 player_score = 0
-
+                print('Play selecionado')
+                level = Level(self.window, 'Level',)
+                level_return = level.run()
+                if level_return:
+                    pass
             if menu_return == MENU_OPTION[1]:
                 pass
 
