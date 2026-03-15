@@ -5,9 +5,10 @@ from pygame import Surface, Rect
 
 from pygame.font import Font
 
-from code.Const import C_RED
+from code.Const import C_RED, WIN_HEIGHT
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 from code.Player import Player
 
 
@@ -41,7 +42,16 @@ class Level:
                     pygame.quit()
                     sys.exit()
 
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        mx, my = pygame.mouse.get_pos()
+                        bullet = self.player.shoot((mx ,my ))
+                        self.entity_list.append(bullet)
+            self.level_text(14, f'entidades: {len(self.entity_list)}', C_RED, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
+
+
+            #EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(self, text_size: int, text: str, text_color:tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size= text_size)

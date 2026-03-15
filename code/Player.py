@@ -2,8 +2,10 @@
 
 import pygame.key
 
+
 from code.Const import ENTITY_SHOT_DELAY, PLAYER_KEY_JUMP, GRAVITY, WIN_HEIGHT
 from code.Entity import Entity
+
 
 
 class Player(Entity):
@@ -45,4 +47,14 @@ class Player(Entity):
             self.vel_y = 0
             self.on_ground = True
 
+    def shoot(self, target_pos):
+        from code.EntityFactory import EntityFactory
 
+        spawn_x = self.rect.centerx + 50
+        spawn_y = self.rect.centery + 20
+        bullet = EntityFactory.get_entity(
+            'Bullet',
+            (spawn_x, spawn_y),
+            target_pos
+        )
+        return bullet

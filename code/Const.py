@@ -17,6 +17,7 @@ ENTITY_HEALTH = {
     'LevelBg0': 999,
     'LevelBg1': 999,
     'Player': 999,
+    'Bullet': 1
 }
 
 ENTITY_SCORE = {
