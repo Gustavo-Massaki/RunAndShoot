@@ -1,4 +1,4 @@
-
+import pygame
 
 #C
 
@@ -35,6 +35,10 @@ ENTITY_SPEED = {
     'Player': 2,
 }
 
+#G
+
+GRAVITY = 5
+
 #M
 
 MENU_OPTION = (
@@ -43,7 +47,9 @@ MENU_OPTION = (
     'EXIT',
 )
 
+#P
 
+PLAYER_KEY_JUMP ={'Player': pygame.K_SPACE}
 
 #W
 

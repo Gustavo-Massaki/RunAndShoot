@@ -1,6 +1,8 @@
+
+
 import pygame.key
 
-from code.Const import ENTITY_SHOT_DELAY
+from code.Const import ENTITY_SHOT_DELAY, PLAYER_KEY_JUMP, GRAVITY, WIN_HEIGHT
 from code.Entity import Entity
 
 
@@ -14,6 +16,8 @@ class Player(Entity):
         ]
         self.frame_index = 0
         self.animation_speed = 0.1
+        self.on_ground = True
+        self.vel_y = 0
         #self.shot_delay = ENTITY_SHOT_DELAY[self.name]
 
     def update(self):
@@ -25,4 +29,20 @@ class Player(Entity):
         self.surf = self.frames[int(self.frame_index)]
 
     def move(self, ):
-        pass
+        pressed_key = pygame.key.get_pressed()
+        ground = WIN_HEIGHT - 50
+
+        if pressed_key[PLAYER_KEY_JUMP[self.name]] and self.on_ground:
+            self.vel_y = -50
+            self.on_ground = False
+
+        #Gravity
+        self.vel_y += GRAVITY
+        self.rect.y += self.vel_y
+
+        if self.rect.bottom >= ground:
+            self.rect.bottom = ground
+            self.vel_y = 0
+            self.on_ground = True
+
+
