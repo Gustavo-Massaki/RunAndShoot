@@ -3,7 +3,7 @@
 import pygame.key
 
 
-from code.Const import ENTITY_SHOT_DELAY, PLAYER_KEY_JUMP, GRAVITY, WIN_HEIGHT
+from code.Const import PLAYER_KEY_JUMP, GRAVITY, WIN_HEIGHT, JUMP_FORCE
 from code.Entity import Entity
 
 
@@ -35,7 +35,7 @@ class Player(Entity):
         ground = WIN_HEIGHT - 50
 
         if pressed_key[PLAYER_KEY_JUMP[self.name]] and self.on_ground:
-            self.vel_y = -50
+            self.vel_y = - JUMP_FORCE
             self.on_ground = False
 
         #Gravity
@@ -51,7 +51,7 @@ class Player(Entity):
         from code.EntityFactory import EntityFactory
 
         spawn_x = self.rect.centerx + 50
-        spawn_y = self.rect.centery + 20
+        spawn_y = self.rect.centery + 15
         bullet = EntityFactory.get_entity(
             'Bullet',
             (spawn_x, spawn_y),

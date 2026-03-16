@@ -5,6 +5,7 @@ import pygame
 from code.Background import Background
 from code.Bullet import Bullet
 from code.Const import WIN_WIDTH, WIN_HEIGHT
+from code.Enemy import Enemy
 from code.Player import Player
 
 
@@ -23,5 +24,5 @@ class EntityFactory:
                 return Player('Player',(100 ,WIN_HEIGHT / 2))
             case 'Bullet':
                 return Bullet('Bullet', position, target)
-            #case 'Enemy1':
-                #return Enemy('Enemy1', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
+            case 'Enemy':
+                return Enemy('Enemy', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
