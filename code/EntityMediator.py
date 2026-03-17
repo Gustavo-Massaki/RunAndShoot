@@ -24,8 +24,10 @@ class EntityMediator:
         valid_interaction = False
         if isinstance(ent1, Enemy) and isinstance(ent2, Bullet):
             valid_interaction = True
+            ent1.last_dmg = 'Bullet'
         elif isinstance(ent1, Bullet) and isinstance(ent2, Enemy):
             valid_interaction = True
+            ent2.last_dmg = 'Bullet'
         elif isinstance(ent1, Player) and isinstance(ent2, Enemy):
             valid_interaction = True
 
@@ -36,6 +38,13 @@ class EntityMediator:
                 ent1.rect.top <= ent2.rect.bottom):
                 ent1.health -= ent2.damage
                 ent2.health -= ent1.damage
+
+    @staticmethod
+    def __give_score(enemy: Enemy, entity_list: list[Entity]):
+        if enemy.last_dmg == 'Bullet':
+            for ent in entity_list:
+                if isinstance(ent,Player):
+                    ent.score += enemy.score
 
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
@@ -51,5 +60,6 @@ class EntityMediator:
 
         for ent in entity_list:
             EntityMediator.__verify_collision_window(ent)
-
+            if isinstance(ent, Enemy) and ent.health <= 0:
+                EntityMediator.__give_score(ent, entity_list)
         entity_list[:] = [ent for ent in entity_list if ent.health > 0]

@@ -2,10 +2,10 @@ import sys
 from datetime import datetime
 
 import pygame
-from pygame import Surface, Rect, K_BACKSPACE, KEYDOWN, K_RETURN
+from pygame import Surface, Rect, K_BACKSPACE, KEYDOWN, K_RETURN, K_ESCAPE
 from pygame.font import Font
 
-from code.Const import SCORE_POS, C_BLACK
+from code.Const import SCORE_POS, C_BLACK, WIN_HEIGHT, WIN_WIDTH, C_RED
 from code.DBProxy import DBProxy
 
 
@@ -15,15 +15,18 @@ class Score:
         self.surf = pygame.image.load('./asset/Score.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
-    def save(self, player_score: list[int]):
+    def save(self, player_score: int):
+        pygame.mixer_music.load('./asset/Score.mp3')
+        pygame.mixer_music.play(-1)
         db_proxy = DBProxy('DBScore')
         name = ''
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
             self.score_text(48, 'YOU WIN', C_BLACK, SCORE_POS['Title'])
             text = 'Enter your name'
-            score = player_score[0]
+            score = player_score
             self.score_text(20, text, C_BLACK, SCORE_POS['EnterName'])
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -38,7 +41,7 @@ class Score:
                     else:
                         if len(name) < 4:
                             name += event.unicode
-            self.score_text(20, name, C_BLACK, SCORE_POS['Name'])
+            self.score_text(20,name,C_RED,SCORE_POS['Name'])
             pygame.display.flip()
             pass
 
@@ -47,6 +50,7 @@ class Score:
         self.score_text(48, 'TOP 10 SCORE', C_BLACK, SCORE_POS['Title'])
         self.score_text(20, 'NAME   SCORE       DATE    ', C_BLACK, SCORE_POS['Label'])
         db_proxy = DBProxy('DBScore')
+        self.score_text(20, 'Press ESC to return to menu', C_BLACK, SCORE_POS['Exit'])
         list_score = db_proxy.retrieve_top10()
         db_proxy.close()
 

@@ -1,6 +1,6 @@
 import pygame.transform
 
-from code.Const import ENTITY_SPEED
+from code.Const import ENTITY_SPEED, ENTITY_SCORE
 from code.Entity import Entity
 
 
@@ -9,7 +9,7 @@ class Enemy(Entity):
         super().__init__(name,position)
         self.surf = pygame.transform.scale(self.surf,(80,80))
         self.rect = self.surf.get_rect(left=position[0], top=position[1])
-
+        self.score = ENTITY_SCORE[self.name]
     def move(self):
         self.rect.centerx -= ENTITY_SPEED[self.name]
 

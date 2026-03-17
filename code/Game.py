@@ -19,11 +19,11 @@ class Game:
 
             if menu_return == MENU_OPTION[0]:
                 player_score = 0
-                print('Play selecionado')
                 level = Level(self.window, 'Level', player_score)
                 level_return = level.run()
-                if level_return:
-                    pass
+                if level_return is not None:
+                    score.save(level_return)
+
             if menu_return == MENU_OPTION[1]:
                 score.show()
 

@@ -2,7 +2,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, C_BLACK, MENU_OPTION, C_RED
+from code.Const import WIN_WIDTH, C_BLACK, MENU_OPTION, C_RED, WIN_HEIGHT
 
 
 class Menu:
@@ -13,6 +13,8 @@ class Menu:
 
     def run(self):
         menu_option = 0
+        pygame.mixer_music.load('./asset/Menu.mp3')
+        pygame.mixer_music.play(-1)
 
         while True:
 
@@ -22,7 +24,8 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(50, "Infinite", C_BLACK, ((WIN_WIDTH / 2), 70))
             self.menu_text(50, "Shooter", C_BLACK, ((WIN_WIDTH / 2), 120))
-
+            self.menu_text(20, "Space - jump", C_BLACK, ((WIN_WIDTH / 2), (WIN_HEIGHT - 40)))
+            self.menu_text(20, "Mouse - shoot", C_BLACK, ((WIN_WIDTH / 2), (WIN_HEIGHT - 20)))
             for i in range(len(MENU_OPTION)):
 
                 pos = ((WIN_WIDTH / 2), 200 + 25 * i)

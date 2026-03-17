@@ -17,7 +17,7 @@ class Entity(ABC):
 
         self.health = ENTITY_HEALTH[self.name]
         self.damage = ENTITY_DAMAGE[self.name]
-
+        self.last_dmg = 'None'
 
     @abstractmethod
     def move(self, ):

@@ -19,16 +19,16 @@ ENTITY_DAMAGE = {
 ENTITY_HEALTH = {
     'LevelBg0': 999,
     'LevelBg1': 999,
-    'Player': 999,
+    'Player': 1,
     'Bullet': 1,
-    'Enemy': 3
+    'Enemy': 2
 }
 
 ENTITY_SCORE = {
     'LevelBg0': 0,
     'LevelBg1': 0,
     'Player': 0,
-    'Enemy': 3
+    'Enemy': 5
 }
 
 ENTITY_SHOT_DELAY = {
@@ -89,4 +89,5 @@ SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              7: (WIN_WIDTH / 2, 250),
              8: (WIN_WIDTH / 2, 270),
              9: (WIN_WIDTH / 2, 290),
+             'Exit': (WIN_WIDTH / 2, WIN_HEIGHT - 30)
 }
