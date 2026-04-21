@@ -1,4 +1,4 @@
-Run And Shoot
+<h2 align="center">#Run And Shoot<h2>
 
 Este é um projeto universitário onde você deve pular para desviar e atirar nos inimigos
 
